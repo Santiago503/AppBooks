@@ -43,6 +43,7 @@ export class ListComponent implements OnInit  {
           },
           error: (e) => {
             console.log(e)
+            this.loading = false;
             this.alertServ.swalBasic('An error has occurred', 'Could not load information, please try again','error');
           }})
   }
@@ -101,6 +102,7 @@ export class ListComponent implements OnInit  {
     ({
       next: (resp: ResponseData) => {
         this.alertServ.swalBasic('Congratulation!!','Book Deleted','success');
+        this.getAllBooks();
       },
       error: (e) => {
         console.log(e)
