@@ -5,11 +5,13 @@ import { BooksRoutingModule } from './books-routing.module';
 import { ListComponent } from './components/list/list.component';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { MaterialModule } from 'src/material/material.module';
+import { FormControlBookComponent } from './components/form-control-book/form-control-book.component';
 
 
 @NgModule({
   declarations: [
-    ListComponent
+    ListComponent,
+    FormControlBookComponent
   ],
   imports: [
     CommonModule,
@@ -18,6 +20,7 @@ import { MaterialModule } from 'src/material/material.module';
     MaterialModule
 
   ],
+  entryComponents: [FormControlBookComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BooksModule { }

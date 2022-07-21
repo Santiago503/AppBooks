@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WelcomeComponent } from './page/welcome/welcome.component';
 import { MaterialModule } from 'src/material/material.module';
 import { ComponentsModule } from './shared/components/components.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ComponentsModule } from './shared/components/components.module';
     AppRoutingModule,
     MaterialModule,
     ComponentsModule,
-    BrowserAnimationsModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

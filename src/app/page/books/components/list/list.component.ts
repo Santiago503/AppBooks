@@ -3,62 +3,88 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'HydrogenHyd', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'BerylliumBerylliumBeryll', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+import { ResponseData } from 'src/app/shared/models/Response';
+import { AlertService } from 'src/app/shared/services/alert/alert.service';
+import { Book } from '../../models/book';
+import { BookService } from './../../services/book.service';
+import { FormControlBookComponent } from './../form-control-book/form-control-book.component';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit, AfterViewInit  {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+export class ListComponent implements OnInit  {
+  displayedColumns: string[] = ['id', 'title', 'pageCount', 'publishDate', 'action'];
+  dataSource = new MatTableDataSource<Book>();
 
-  @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  loading: boolean;
+  filterValue: boolean;
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) {}
+  constructor(private _liveAnnouncer: LiveAnnouncer, public bookService: BookService, private alertServ: AlertService) {}
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-  }
 
   ngOnInit(): void {
+    this.getAllBooks();
   }
 
-  announceSortChange(sortState: Sort) {
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
+  getAllBooks() {
+    this.loading = true;
+    this.bookService
+        .getAllBooks()
+        .subscribe
+        ({
+          next: (resp: ResponseData) => {
+            this.dataSource           = new MatTableDataSource<Book>(resp.data);
+            this.dataSource.paginator = this.paginator;
+            this.loading = false;
+          },
+          error: (e) => {
+            console.log(e)
+            this.alertServ.swalBasic('An error has occurred', 'Could not load information, please try again','error');
+          }})
+  }
+
+  applyFilter(filterValue: any) {
+
+    if ((filterValue?.keyCode == 13 && (typeof filterValue != "string") || (typeof filterValue === "string"))) {
+            //simulate API
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+          }, 500);
     }
   }
 
-  applyFilter(event: any) {
+  create() {
+    this.bookService.onCreateDialog(FormControlBookComponent, '90');
+  }
+
+  onUpdate(element: any, type: boolean) {
+
+  }
+
+  async onDelete(element: any) {
+
+    let confirm = await this.alertServ.SwalConfirm().then( resp => {
+      return resp;
+    })
+
+    if(!confirm.isConfirmed) return
+
+
+
+    this.bookService.deleteBook(element?.id)
+    .subscribe
+    ({
+      next: (resp: ResponseData) => {
+        this.alertServ.swalBasic('Congratulation!!','Book Deleted','success');
+      },
+      error: (e) => {
+        console.log(e)
+        this.alertServ.swalBasic('An error has occurred', 'Could not load information, please try again','error');
+      }})
   }
 
 }
