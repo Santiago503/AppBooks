@@ -1,0 +1,43 @@
+<h3>{{ title }}</h3>
+<div class="d-flex flex-column justify-content-between h-90">
+
+  <!-- Form -->
+  <form [formGroup]="this.FormBuilder" autocomplete="off">
+    <div>
+      <!-- This component Render all Inputs of Array InputGenericData -->
+      <app-inputs-generic
+        [formGroup]="FormBuilder"
+        [classMain]="'row'"
+        [inputGeneric]="inputGenericData">
+      </app-inputs-generic>
+    </div>
+
+  </form>
+
+  <p *ngIf="FormBuilder.invalid && FormBuilder.touched">Form invalid, please fill all fields</p>
+
+  <!-- Spinner -->
+  <div class="spinner" *ngIf="loading">
+    <mat-spinner ></mat-spinner>
+  </div>
+
+  <!-- Author -->
+  <div *ngIf="this.FormBuilder.value.id != 0">
+    <button mat-raised-button color="primary" (click)="GetAuthor()" *ngIf="!this.bookService.author">See Author</button>
+    <div>
+      <app-author></app-author>
+    </div>
+  </div>
+
+  <!-- Btn -->
+  <div>
+    <button
+      class="float-end"
+      mat-raised-button
+      color="warn"
+      (click)="saveOrEdit()"
+      [disabled]="!matDialogData?.formEnableOrdisable || loading">
+      <span>{{ this.FormBuilder.value.id == 0 ? 'Save' : 'Edit' }}</span>
+    </button>
+  </div>
+</div>
