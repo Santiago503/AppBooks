@@ -1,0 +1,44 @@
+.div_welcome {
+  max-width: 500px;
+  min-height: 500px;
+  max-height: 700px;
+  width: 400px;
+  text-align: center;
+}
+
+.div_container_welcome {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .rounded-circle {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+}
+
+.bar {
+  height: 10px;
+}
+
+.box_shadown {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+}
+
+.boxx {
+  height: 500px;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  color: white;
+  margin-top: 1.2rem;
+}
+
+
+
+

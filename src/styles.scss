@@ -1,4 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+
+html, body { height: 100%; width: 100%;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  background-image: url("./assets/img/bg.svg");
+  background-color: #2ccae6;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.m-3px {
+  margin: 3px;
+}
+
+.spinner {
+  mat-spinner {
+    margin: 0 auto;
+  }
+}
+
+.zoom {
+  transition: transform 1s;
+  cursor: pointer;
+}
