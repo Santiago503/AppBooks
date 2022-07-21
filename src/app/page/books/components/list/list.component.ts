@@ -57,8 +57,10 @@ export class ListComponent implements OnInit  {
     }
   }
 
+
+
   create() {
-    this.bookService.onCreateDialog(FormControlBookComponent, '90');
+    this.bookService.onCreateDialog(FormControlBookComponent, '90','50');
   }
 
   onUpdate(element: any, type: boolean) {

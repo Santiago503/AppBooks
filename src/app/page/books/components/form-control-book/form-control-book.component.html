@@ -1,3 +1,20 @@
-<h5>Create a Book</h5>
+<h3>Create a Book</h3>
 
+<div class="d-flex flex-column justify-content-between">
+  <form [formGroup]="this.FormBuilder" autocomplete="off">
+    <div>
+      <!-- This component Render all Inputs of Array InputGenericData -->
+      <app-inputs-generic
+        [formGroup]="FormBuilder"
+        [classMain]="'row'"
+        [inputGeneric]="inputGenericData">
+      </app-inputs-generic>
+    </div>
 
+    <p *ngIf="FormBuilder.invalid">Form invalid, please fill all fields</p>
+  </form>
+
+  <div>
+    <button class="float-end" mat-raised-button color="warn" (click)="saveOrEdit()">{{!this.edit ? 'Save' : 'Edit' }}</button>
+  </div>
+</div>

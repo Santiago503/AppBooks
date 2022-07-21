@@ -6,6 +6,7 @@ import { ListComponent } from './components/list/list.component';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { MaterialModule } from 'src/material/material.module';
 import { FormControlBookComponent } from './components/form-control-book/form-control-book.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,9 +15,10 @@ import { FormControlBookComponent } from './components/form-control-book/form-co
     FormControlBookComponent
   ],
   imports: [
-    CommonModule,
+  CommonModule,
     BooksRoutingModule,
     ComponentsModule,
+    ReactiveFormsModule,
     MaterialModule
 
   ],

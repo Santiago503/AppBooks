@@ -12,7 +12,6 @@ export interface InputGeneric {
     typeData?: "Complete" | "id", //Tipo a retornar cuando se haga un change si Id o el Obj completo
     maxLength?: number,
     readonly? : boolean, //poder escribir o no
-    onlyUpperCase? : boolean,
     color?: string,
     rows?:number //para textarea
 }
