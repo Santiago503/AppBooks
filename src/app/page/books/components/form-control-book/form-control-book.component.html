@@ -1,6 +1,6 @@
-<h3>Create a Book</h3>
+<h3>{{ title }}</h3>
 
-<div class="d-flex flex-column justify-content-between">
+<div class="d-flex flex-column justify-content-between h-90">
   <form [formGroup]="this.FormBuilder" autocomplete="off">
     <div>
       <!-- This component Render all Inputs of Array InputGenericData -->
@@ -11,10 +11,23 @@
       </app-inputs-generic>
     </div>
 
-    <p *ngIf="FormBuilder.invalid">Form invalid, please fill all fields</p>
   </form>
 
-  <div>
-    <button class="float-end" mat-raised-button color="warn" (click)="saveOrEdit()">{{!this.edit ? 'Save' : 'Edit' }}</button>
+  <p *ngIf="FormBuilder.invalid && FormBuilder.touched">Form invalid, please fill all fields</p>
+
+  <div class="spinner" *ngIf="loading">
+    <mat-spinner ></mat-spinner>
+  </div>
+
+  <div >
+    <button
+      class="float-end"
+      mat-raised-button
+      color="warn"
+      (click)="saveOrEdit()"
+      [disabled]="!matDialogData?.formEnableOrdisable || loading">
+      <span>{{ this.FormBuilder.value.id == 0 ? 'Save' : 'Edit' }}</span>
+
+    </button>
   </div>
 </div>

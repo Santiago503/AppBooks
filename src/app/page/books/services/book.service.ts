@@ -33,7 +33,7 @@ export class BookService {
   }
 
   putBook(putBody: Book): Observable<any> {
-    return this.httpClient.put( environment.urlAPi + 'book', putBody);
+    return this.httpClient.put( environment.urlAPi + `book/${putBody.id}`, putBody);
   }
 
   deleteBook(id: number): Observable<any> {

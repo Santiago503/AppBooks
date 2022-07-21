@@ -22,7 +22,7 @@ export const inputGenericData: InputGeneric[] = [
     { label: "Page Count",
       class: "col-md-4 col-sm-4",
       appearance: "outline",
-      type: "text",
+      type: "number",
       typeInput:"matInput",
       formControlName: "pageCount",
       data : null,

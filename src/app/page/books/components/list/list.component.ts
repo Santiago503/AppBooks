@@ -24,7 +24,6 @@ export class ListComponent implements OnInit  {
 
   constructor(private _liveAnnouncer: LiveAnnouncer, public bookService: BookService, private alertServ: AlertService) {}
 
-
   ngOnInit(): void {
     this.getAllBooks();
   }
@@ -57,14 +56,23 @@ export class ListComponent implements OnInit  {
     }
   }
 
-
-
   create() {
-    this.bookService.onCreateDialog(FormControlBookComponent, '90','50');
+   let dg =  this.bookService.onCreateDialog(FormControlBookComponent, '90','50');
+
+    dg.afterClosed().subscribe((resp) => {
+      this.getAllBooks();
+   });
   }
 
-  onUpdate(element: any, type: boolean) {
+  onUpdate(element: any, typeCan: boolean) {
+    //no need to do a query to find the item because the list has the entire item
+    let dg = this.bookService.onCreateDialog(FormControlBookComponent, '90', '50', typeCan, element, false, true, '900px');
 
+    if(typeCan){
+      dg.afterClosed().subscribe((resp) => {
+        this.getAllBooks();
+     });
+    }
   }
 
   async onDelete(element: any) {
