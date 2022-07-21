@@ -78,13 +78,25 @@ export class ListComponent implements OnInit  {
 
   onUpdate(element: any, typeCan: boolean) {
     //no need to do a query to find the item because the list has the entire item
-    let dg = this.bookService.onCreateDialog(FormControlBookComponent, '90', '50', typeCan, element, false, true, '900px');
 
-    if(typeCan){
-      dg.afterClosed().subscribe((resp) => {
-        this.getAllBooks();
-     });
-    }
+    this.bookService
+    .getBook(element.id)
+    .subscribe
+    ({
+      next: (resp: ResponseData) => {
+        let dg = this.bookService.onCreateDialog(FormControlBookComponent, '90', '50', typeCan, resp.data, false, true, '900px');
+
+        if(typeCan){
+          dg.afterClosed().subscribe((resp) => {
+            this.getAllBooks();
+         });
+        }
+      },
+      error: (e) => {
+        console.log(e)
+        this.loading = false;
+        this.alertServ.swalBasic('An error has occurred', 'Could not load information, please try again','error');
+      }})
   }
 
   async onDelete(element: any) {

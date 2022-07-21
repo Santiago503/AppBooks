@@ -23,6 +23,7 @@ export class FormControlBookComponent implements OnInit {
     public bookService: BookService,
     private alertServ: AlertService,
     @Inject(MAT_DIALOG_DATA) public matDialogData: any) {
+      console.log("~ matDialogData?.data", matDialogData)
       //if  Mat Dialog have data then insert into Form
     matDialogData?.data ? this.patchValueForm( matDialogData?.data ) : null;
       //if it Edit or See
