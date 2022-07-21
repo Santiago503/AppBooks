@@ -7,12 +7,14 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { MaterialModule } from 'src/material/material.module';
 import { FormControlBookComponent } from './components/form-control-book/form-control-book.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthorComponent } from './components/author/author.component';
 
 
 @NgModule({
   declarations: [
     ListComponent,
-    FormControlBookComponent
+    FormControlBookComponent,
+    AuthorComponent
   ],
   imports: [
   CommonModule,

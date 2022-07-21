@@ -4,14 +4,13 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Book } from '../models/book';
+import { Author } from './../models/author';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-  totalSize: any;
-  currentPage: number;
-  pageSize: any;
+  author: Author[];
 
   constructor(private httpClient: HttpClient, private dialog: MatDialog) { }
 
