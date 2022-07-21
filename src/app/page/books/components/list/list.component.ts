@@ -1,7 +1,5 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {  Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ResponseData } from 'src/app/shared/models/Response';
 import { AlertService } from 'src/app/shared/services/alert/alert.service';
@@ -22,7 +20,7 @@ export class ListComponent implements OnInit  {
   loading: boolean;
   filterValue: string;
 
-  constructor(private _liveAnnouncer: LiveAnnouncer, public bookService: BookService, private alertServ: AlertService) {}
+  constructor(public bookService: BookService, private alertServ: AlertService) {}
 
   ngOnInit(): void {
     this.getAllBooks();
