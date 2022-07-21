@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WelcomeComponent } from './page/welcome/welcome.component';
 import { MaterialModule } from 'src/material/material.module';
+import { ComponentsModule } from './shared/components/components.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MaterialModule } from 'src/material/material.module';
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
+    ComponentsModule,
     BrowserAnimationsModule
   ],
   providers: [],

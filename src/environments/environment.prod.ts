@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  urlAPi:'http://localhost:28118/'
+
 };

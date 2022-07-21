@@ -1,0 +1,17 @@
+.card_list {
+  background-color: white;
+  padding: 20px;
+  display: block;
+  width: 90%;
+  height: 90%;
+  border-radius: 25px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.div_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
