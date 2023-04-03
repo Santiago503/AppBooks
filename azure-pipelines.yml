@@ -19,10 +19,19 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build
-  displayName: 'npm install and build'
+  displayName: 'npm install angular'
+
+- script:
+    npm install
+  displayName: 'npm install'
+
+- script:
+    ng build
+  displayName: 'ng build'
+
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
+    SourceFolder: '$(Build.SourcesDirectory)/dist/app-books'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
   displayName: 'Copy data $(Build.SourcesDirectory)/dist'
