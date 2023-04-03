@@ -22,9 +22,10 @@ steps:
   displayName: 'npm install and build'
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/dist'
+    SourceFolder: '$(Build.SourcesDirectory)'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
+  displayName: 'Copy data $(Build.SourcesDirectory)/dist'
 
 - task: ArchiveFiles@2
   inputs :
